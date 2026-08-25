@@ -1,15 +1,19 @@
 import { createBrowserRouter } from "react-router";
 
-import { HomePage } from "./HomePage/HomePage";
+import { navGroups } from "@/widget";
+
+import { StubPage } from "./StubPage/StubPage";
 import { VerificationRequestsPage } from "./VerificationRequestsPage/VerificationRequestsPage";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: HomePage,
-  },
-  {
-    path: "/verification-requests",
-    Component: VerificationRequestsPage,
-  },
-]);
+const navItems = navGroups.flatMap((group) => group.items);
+
+export const router = createBrowserRouter(
+  navItems.map((item) => ({
+    path: item.href,
+    element: item.implemented ? (
+      <VerificationRequestsPage />
+    ) : (
+      <StubPage title={item.label} />
+    ),
+  })),
+);
