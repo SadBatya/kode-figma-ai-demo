@@ -3,25 +3,25 @@ import { Search } from "lucide-react";
 import { cn } from "@/shared/lib";
 import { Input } from "@/shared/ui";
 
-export type SearchField = "email" | "name";
+import type { CurrencyCategory } from "@/entities";
 
 type Props = {
   searchValue: string;
   onSearchValueChange: (value: string) => void;
-  searchField: SearchField;
-  onSearchFieldChange: (field: SearchField) => void;
+  category: CurrencyCategory;
+  onCategoryChange: (category: CurrencyCategory) => void;
 };
 
-const fieldOptions: { value: SearchField; label: string }[] = [
-  { value: "email", label: "По email" },
-  { value: "name", label: "По названию" },
+const categoryOptions: { value: CurrencyCategory; label: string }[] = [
+  { value: "fiat", label: "Фиат" },
+  { value: "crypto", label: "Крипто" },
 ];
 
-export const VerificationRequestsToolbar = ({
+export const CurrencyRatesToolbar = ({
   searchValue,
   onSearchValueChange,
-  searchField,
-  onSearchFieldChange,
+  category,
+  onCategoryChange,
 }: Props) => {
   return (
     <div className="flex flex-col gap-3 md:flex-row md:items-center">
@@ -29,9 +29,7 @@ export const VerificationRequestsToolbar = ({
         <Input
           value={searchValue}
           onChange={(event) => onSearchValueChange(event.target.value)}
-          placeholder={
-            searchField === "email" ? "Поиск по email" : "Поиск по названию"
-          }
+          placeholder="Поиск по валюте"
           className="h-9 flex-1 rounded-none border-0 border-r border-input px-3 py-1 text-[16px] shadow-none focus-visible:ring-0"
         />
         <div className="flex size-9 shrink-0 items-center justify-center">
@@ -40,14 +38,14 @@ export const VerificationRequestsToolbar = ({
       </div>
 
       <div className="flex h-9 w-fit items-center justify-center rounded-full bg-muted p-[3px]">
-        {fieldOptions.map((option) => (
+        {categoryOptions.map((option) => (
           <button
             key={option.value}
             type="button"
-            onClick={() => onSearchFieldChange(option.value)}
+            onClick={() => onCategoryChange(option.value)}
             className={cn(
               "flex h-[29px] items-center justify-center rounded-full px-2 text-sm font-medium whitespace-nowrap text-foreground transition-colors",
-              option.value === searchField &&
+              option.value === category &&
                 "border border-border bg-background shadow-xs",
             )}
           >

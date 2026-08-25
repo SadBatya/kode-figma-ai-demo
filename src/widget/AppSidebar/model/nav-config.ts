@@ -1,25 +1,26 @@
-import accountBalance from "@/shared/assets/icons/account-balance.svg";
-import assignmentLate from "@/shared/assets/icons/assignment-late.svg";
-import barChart from "@/shared/assets/icons/bar-chart.svg";
-import changeCircle from "@/shared/assets/icons/change-circle.svg";
-import currencyExchange from "@/shared/assets/icons/currency-exchange.svg";
-import dataThresholding from "@/shared/assets/icons/data-thresholding.svg";
-import docs from "@/shared/assets/icons/docs.svg";
-import group from "@/shared/assets/icons/group.svg";
-import howToReg from "@/shared/assets/icons/how-to-reg.svg";
-import listAlt from "@/shared/assets/icons/list-alt.svg";
-import manageAccounts from "@/shared/assets/icons/manage-accounts.svg";
-import paid from "@/shared/assets/icons/paid.svg";
-import personEdit from "@/shared/assets/icons/person-edit.svg";
-import spaceDashboard from "@/shared/assets/icons/space-dashboard.svg";
+import {
+  ArrowLeftRight,
+  BadgeAlert,
+  Banknote,
+  BarChartBig,
+  Database,
+  FileText,
+  Landmark,
+  LayoutDashboard,
+  LineChart,
+  List,
+  type LucideIcon,
+  UserRoundCheck,
+  UserRoundCog,
+  UserRoundSearch,
+  UsersRound,
+} from "lucide-react";
 
 export type NavItem = {
   label: string;
-  icon: string;
+  icon: LucideIcon;
   href: string;
   badge?: number;
-  /** Real, fully implemented page. Everything else renders as a stub. */
-  implemented?: boolean;
 };
 
 export type NavGroup = {
@@ -30,8 +31,8 @@ export type NavGroup = {
 export const navGroups: NavGroup[] = [
   {
     items: [
-      { label: "Дашборд кошельков", icon: spaceDashboard, href: "/" },
-      { label: "Курсы валют", icon: currencyExchange, href: "/currency-rates" },
+      { label: "Дашборд кошельков", icon: LayoutDashboard, href: "/" },
+      { label: "Курсы валют", icon: Banknote, href: "/currency-rates" },
     ],
   },
   {
@@ -39,10 +40,10 @@ export const navGroups: NavGroup[] = [
     items: [
       {
         label: "На подтверждение",
-        icon: assignmentLate,
+        icon: BadgeAlert,
         href: "/pending-confirmation",
       },
-      { label: "Список ордеров", icon: listAlt, href: "/orders" },
+      { label: "Список ордеров", icon: List, href: "/orders" },
     ],
   },
   {
@@ -50,33 +51,28 @@ export const navGroups: NavGroup[] = [
     items: [
       {
         label: "Заявки на верификацию",
-        icon: howToReg,
+        icon: UserRoundCheck,
         href: "/verification-requests",
         badge: 5,
-        implemented: true,
       },
-      { label: "Список клиентов", icon: group, href: "/clients" },
+      { label: "Список клиентов", icon: UsersRound, href: "/clients" },
     ],
   },
   {
     title: "Настройки:",
     items: [
-      { label: "Ассеты", icon: paid, href: "/assets" },
-      { label: "Торговые пары", icon: changeCircle, href: "/trading-pairs" },
-      { label: "Клиентские лимиты", icon: barChart, href: "/client-limits" },
-      {
-        label: "Платежные системы",
-        icon: accountBalance,
-        href: "/payment-systems",
-      },
+      { label: "Ассеты", icon: Database, href: "/assets" },
+      { label: "Торговые пары", icon: ArrowLeftRight, href: "/trading-pairs" },
+      { label: "Клиентские лимиты", icon: BarChartBig, href: "/client-limits" },
+      { label: "Платежные системы", icon: Landmark, href: "/payment-systems" },
       {
         label: "Порог консолидации",
-        icon: dataThresholding,
+        icon: LineChart,
         href: "/consolidation-threshold",
       },
       {
         label: "Реквизиты платформы",
-        icon: docs,
+        icon: FileText,
         href: "/platform-requisites",
       },
     ],
@@ -84,8 +80,12 @@ export const navGroups: NavGroup[] = [
   {
     title: "Офис:",
     items: [
-      { label: "Сотрудники", icon: manageAccounts, href: "/employees" },
-      { label: "Роли сотрудников", icon: personEdit, href: "/employee-roles" },
+      { label: "Сотрудники", icon: UserRoundSearch, href: "/employees" },
+      {
+        label: "Роли сотрудников",
+        icon: UserRoundCog,
+        href: "/employee-roles",
+      },
     ],
   },
 ];

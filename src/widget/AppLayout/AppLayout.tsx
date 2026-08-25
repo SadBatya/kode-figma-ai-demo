@@ -14,7 +14,7 @@ export const AppLayout = ({ children, title }: Props) => {
   return (
     <SidebarProvider
       className="h-dvh min-h-0 flex-col bg-background"
-      style={{ "--sidebar-width": "280px" } as CSSProperties}
+      style={{ "--sidebar-width": "255px" } as CSSProperties}
     >
       <AppHeader title={title} />
       <div className="relative flex min-h-0 flex-1 [contain:layout]">

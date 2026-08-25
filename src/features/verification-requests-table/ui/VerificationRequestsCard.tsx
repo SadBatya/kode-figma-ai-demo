@@ -1,7 +1,5 @@
 import { useMemo, useState } from "react";
 
-import { Card } from "@/shared/ui";
-
 import { verificationRequestsMock } from "../model/mock";
 import { VerificationRequestsMobileList } from "./VerificationRequestsMobileList";
 import { VerificationRequestsTable } from "./VerificationRequestsTable";
@@ -26,17 +24,19 @@ export const VerificationRequestsCard = () => {
   }, [searchValue, searchField]);
 
   return (
-    <Card className="w-full gap-0 overflow-hidden rounded-none py-0 ring-0 md:rounded-3xl">
-      <VerificationRequestsToolbar
-        searchValue={searchValue}
-        onSearchValueChange={setSearchValue}
-        searchField={searchField}
-        onSearchFieldChange={setSearchField}
-      />
+    <div className="flex w-full flex-1 flex-col gap-3 md:gap-6">
+      <div className="px-4 md:px-0">
+        <VerificationRequestsToolbar
+          searchValue={searchValue}
+          onSearchValueChange={setSearchValue}
+          searchField={searchField}
+          onSearchFieldChange={setSearchField}
+        />
+      </div>
       <VerificationRequestsMobileList requests={requests} />
-      <div className="hidden md:block md:px-4 md:pb-4">
+      <div className="hidden md:block">
         <VerificationRequestsTable requests={requests} />
       </div>
-    </Card>
+    </div>
   );
 };

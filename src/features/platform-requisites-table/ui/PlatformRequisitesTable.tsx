@@ -1,5 +1,4 @@
 import {
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
@@ -21,13 +20,13 @@ import {
   TableRow,
 } from "@/shared/ui";
 
-import type { VerificationRequest } from "@/entities";
+import type { PlatformRequisite } from "@/entities";
 
 type Props = {
-  requests: VerificationRequest[];
+  requisites: PlatformRequisite[];
 };
 
-export const VerificationRequestsTable = ({ requests }: Props) => {
+export const PlatformRequisitesTable = ({ requisites }: Props) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="overflow-hidden rounded-3xl border border-border">
@@ -35,40 +34,48 @@ export const VerificationRequestsTable = ({ requests }: Props) => {
           <TableHeader>
             <TableRow className="h-10 border-border bg-muted hover:bg-muted">
               <TableHead className="text-[14px] font-medium text-foreground">
-                <span className="inline-flex items-center gap-1">
-                  Дата обновления
-                  <ChevronDown className="size-[14px]" />
-                </span>
+                Название
               </TableHead>
               <TableHead className="text-[14px] font-medium text-foreground">
-                Название компании
+                Валюта реквизитов
               </TableHead>
               <TableHead className="text-[14px] font-medium text-foreground">
-                Email
+                Данные счета
               </TableHead>
-              <TableHead className="w-[110px]">
+              <TableHead className="text-[14px] font-medium text-foreground">
+                Дата изменения
+              </TableHead>
+              <TableHead className="w-[99px]">
                 <span className="sr-only">Действие</span>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {requests.map((request) => (
+            {requisites.map((requisite) => (
               <TableRow
-                key={request.id}
+                key={requisite.id}
                 className="h-[53px] border-border last:border-b-0"
               >
-                <TableCell className="text-[14px] text-foreground">
-                  {request.updatedAt}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {requisite.name}
                 </TableCell>
-                <TableCell className="truncate text-[14px] text-foreground">
-                  {request.companyName}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {requisite.currency}
                 </TableCell>
-                <TableCell className="truncate text-[14px] text-foreground">
-                  {request.email}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  <p>Номер счёта: {requisite.accountNumber}</p>
+                  <p>БИК: {requisite.bik}</p>
+                </TableCell>
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {requisite.updatedAt}
                 </TableCell>
                 <TableCell>
-                  <Button size="sm" className="rounded-full shadow-xs">
-                    Решение
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full text-primary hover:text-primary"
+                  >
+                    Детали
                   </Button>
                 </TableCell>
               </TableRow>

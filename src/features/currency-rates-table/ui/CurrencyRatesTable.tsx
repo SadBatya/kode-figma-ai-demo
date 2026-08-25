@@ -1,5 +1,4 @@
 import {
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
@@ -21,13 +20,13 @@ import {
   TableRow,
 } from "@/shared/ui";
 
-import type { VerificationRequest } from "@/entities";
+import type { CurrencyRate } from "@/entities";
 
 type Props = {
-  requests: VerificationRequest[];
+  rates: CurrencyRate[];
 };
 
-export const VerificationRequestsTable = ({ requests }: Props) => {
+export const CurrencyRatesTable = ({ rates }: Props) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="overflow-hidden rounded-3xl border border-border">
@@ -35,16 +34,13 @@ export const VerificationRequestsTable = ({ requests }: Props) => {
           <TableHeader>
             <TableRow className="h-10 border-border bg-muted hover:bg-muted">
               <TableHead className="text-[14px] font-medium text-foreground">
-                <span className="inline-flex items-center gap-1">
-                  Дата обновления
-                  <ChevronDown className="size-[14px]" />
-                </span>
+                Валюта
               </TableHead>
               <TableHead className="text-[14px] font-medium text-foreground">
-                Название компании
+                Курс покупки
               </TableHead>
               <TableHead className="text-[14px] font-medium text-foreground">
-                Email
+                Курс продажи
               </TableHead>
               <TableHead className="w-[110px]">
                 <span className="sr-only">Действие</span>
@@ -52,23 +48,23 @@ export const VerificationRequestsTable = ({ requests }: Props) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {requests.map((request) => (
+            {rates.map((rate) => (
               <TableRow
-                key={request.id}
+                key={rate.id}
                 className="h-[53px] border-border last:border-b-0"
               >
-                <TableCell className="text-[14px] text-foreground">
-                  {request.updatedAt}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {rate.pair}
                 </TableCell>
-                <TableCell className="truncate text-[14px] text-foreground">
-                  {request.companyName}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {rate.buyRate}
                 </TableCell>
-                <TableCell className="truncate text-[14px] text-foreground">
-                  {request.email}
+                <TableCell className="text-right text-[14px] text-foreground">
+                  {rate.sellRate}
                 </TableCell>
                 <TableCell>
                   <Button size="sm" className="rounded-full shadow-xs">
-                    Решение
+                    Изменить
                   </Button>
                 </TableCell>
               </TableRow>
