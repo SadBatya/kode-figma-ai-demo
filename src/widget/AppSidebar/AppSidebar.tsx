@@ -90,7 +90,7 @@ export const AppSidebar = () => {
   const location = useLocation();
 
   return (
-    <Sidebar collapsible="none" className="w-[280px] shrink-0">
+    <Sidebar collapsible="offcanvas" className="w-[280px] md:shrink-0">
       <SidebarContent className="justify-between gap-0 pt-6 pb-4">
         <div>
           {navGroups.map((navGroup) => (

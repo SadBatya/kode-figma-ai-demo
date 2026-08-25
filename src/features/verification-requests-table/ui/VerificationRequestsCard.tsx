@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Card } from "@/shared/ui";
 
 import { verificationRequestsMock } from "../model/mock";
+import { VerificationRequestsMobileList } from "./VerificationRequestsMobileList";
 import { VerificationRequestsTable } from "./VerificationRequestsTable";
 import {
   type SearchField,
@@ -25,14 +26,15 @@ export const VerificationRequestsCard = () => {
   }, [searchValue, searchField]);
 
   return (
-    <Card className="w-full gap-0 overflow-hidden rounded-3xl py-0 ring-0">
+    <Card className="w-full gap-0 overflow-hidden rounded-none py-0 ring-0 md:rounded-3xl">
       <VerificationRequestsToolbar
         searchValue={searchValue}
         onSearchValueChange={setSearchValue}
         searchField={searchField}
         onSearchFieldChange={setSearchField}
       />
-      <div className="px-4 pb-4">
+      <VerificationRequestsMobileList requests={requests} />
+      <div className="hidden md:block md:px-4 md:pb-4">
         <VerificationRequestsTable requests={requests} />
       </div>
     </Card>

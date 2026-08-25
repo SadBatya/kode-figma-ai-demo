@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { SidebarInset, SidebarProvider } from "@/shared/ui";
 
@@ -7,18 +7,22 @@ import { AppSidebar } from "../AppSidebar/AppSidebar";
 
 type Props = {
   children: ReactNode;
+  title?: string;
 };
 
-export const AppLayout = ({ children }: Props) => {
+export const AppLayout = ({ children, title }: Props) => {
   return (
-    <div className="flex h-dvh flex-col bg-background">
-      <AppHeader />
-      <SidebarProvider className="min-h-0 flex-1">
+    <SidebarProvider
+      className="h-dvh min-h-0 flex-col bg-background"
+      style={{ "--sidebar-width": "280px" } as CSSProperties}
+    >
+      <AppHeader title={title} />
+      <div className="relative flex min-h-0 flex-1 [contain:layout]">
         <AppSidebar />
         <SidebarInset className="overflow-y-auto bg-background">
           {children}
         </SidebarInset>
-      </SidebarProvider>
-    </div>
+      </div>
+    </SidebarProvider>
   );
 };
